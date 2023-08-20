@@ -1,7 +1,6 @@
 import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons"
 import { fontWeight500 } from "../styles/fontWeights";
-// bg-gradient-to-r from-[#6366f1] via-[#a855f7] to-[#ec4899]
 export default () => {
     return (
         <Tabs>

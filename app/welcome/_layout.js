@@ -43,13 +43,13 @@ export default function Welcome() {
                     </Link> */}
             </View>
             <View className='bg-white py-5 flex flex-col gap-y-3'>
-                <Pressable className="bg-[#300073] w-full rounded-lg p-3 active:bg-activePrimary" >
+                <Pressable className="bg-[#300073] w-full rounded-lg p-3 active:bg-[#371f5a]" >
                     <Text className="text-[#FFFFFF] text-center" style={fontWeight500}>
                         Get started
                     </Text>
                 </Pressable>
 
-                <Pressable onPress={()=> navigation.navigate('login')} className="border border-primary rounded-lg w-full p-3 active:bg-gray100">
+                <Pressable onPress={()=> navigation.navigate('login')} className="border border-primary rounded-lg w-full p-3 active:bg-gray-100">
                     <Text className="text-primary text-center" style={fontWeight500}>
                         Login
                     </Text>

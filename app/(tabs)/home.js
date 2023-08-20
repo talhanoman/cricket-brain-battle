@@ -52,15 +52,16 @@ export default function home() {
         console.error('Error adding user data:', error);
       });
   };
-
-
+  console.clear()
+  console.log('International Match', internationalMatch);
+  console.log('League Match', leagueMatch);
   return (
     <SafeAreaView className='flex-1'>
       <ScrollView>
         <View style={{ height: 200 }} className='bg-[#300073] p-4'>
           <Text onPress={addUser} className="text-lg text-[#FFFFFF]" style={fontWeight600}>Hello Talha!</Text>
           <Text className="text-base text-[#FFFFFF]" style={fontWeight600}>Explore all the live matches around the world!</Text>
-          <View className='h-[50px] w-full bg-gray100 my-auto rounded-md'>
+          <View className='h-[50px] w-full bg-gray-100 my-auto rounded-md'>
             <Text className='text-center text-[#FFFFFF] my-auto'>Add Banner</Text>
           </View>
         </View>
@@ -80,7 +81,7 @@ export default function home() {
           {
             leagueMatch?.map((series) => (
               series?.seriesMatches?.matches?.map((match, index) => (
-                <MatchCard key={index} live={false} teamOne={match?.matchInfo?.team1?.teamName} teamTwo={match?.matchInfo?.team2?.teamName} teamOneScore={match?.matchScore?.team1Score?.inngs1?.runs ? match?.matchScore?.team1Score?.inngs1?.runs : "-"} teamOneWicket={match?.matchScore?.team1Score?.inngs1?.wickets ? match?.matchScore?.team1Score?.inngs1?.wickets : "-"} teamTwoScore={match?.matchScore?.team2Score?.inngs1?.runs ? match?.matchScore?.team2Score?.inngs1?.runs : "-"} teamTwoWicket={match?.matchScore?.team2Score?.inngs1?.wickets ? match?.matchScore?.team2Score?.inngs1?.wickets : "-"} progress={match?.matchInfo?.status} />
+                <MatchCard key={index} matchId={match?.matchInfo?.matchId} live={false} teamOne={match?.matchInfo?.team1?.teamName} teamTwo={match?.matchInfo?.team2?.teamName} teamOneScore={match?.matchScore?.team1Score?.inngs1?.runs ? match?.matchScore?.team1Score?.inngs1?.runs : "-"} teamOneWicket={match?.matchScore?.team1Score?.inngs1?.wickets ? match?.matchScore?.team1Score?.inngs1?.wickets : "-"} teamTwoScore={match?.matchScore?.team2Score?.inngs1?.runs ? match?.matchScore?.team2Score?.inngs1?.runs : "-"} teamTwoWicket={match?.matchScore?.team2Score?.inngs1?.wickets ? match?.matchScore?.team2Score?.inngs1?.wickets : "-"} progress={match?.matchInfo?.status} />
               ))
             ))
           }
@@ -122,13 +123,13 @@ export default function home() {
             </View>
             {/* Buttons Row */}
             <View className='flex flex-row justify-between mt-4 gap-x-2'>
-              <Pressable className="border border-primary rounded-lg w-1/2 p-3 active:bg-gray100 flex flex-row justify-center items-center">
+              <Pressable className="border border-primary rounded-lg w-1/2 p-3 active:bg-gray-100 flex flex-row justify-center items-center">
                 <Ionicons name='bar-chart' size={24} color={'#300073'} />
                 <Text className="text-primary text-center ml-1" style={fontWeight500}>
                   View All
                 </Text>
               </Pressable>
-              <Pressable className="bg-[#300073] w-1/2 rounded-lg p-3 active:bg-activePrimary flex flex-row justify-center items-center" >
+              <Pressable className="bg-[#300073] w-1/2 rounded-lg p-3 active:bg-[#371f5a] flex flex-row justify-center items-center" >
                 <Ionicons name='game-controller' size={24} color={'#FFFFFF'} />
                 <Text className="text-[#FFFFFF] text-center ml-1" style={fontWeight500}>
                   Play

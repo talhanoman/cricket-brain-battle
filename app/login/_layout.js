@@ -9,7 +9,7 @@ export default function Login() {
   return (
     <SafeAreaView className='p-4'>
       <View>
-        <Pressable className='active:bg-gray100 w-[42px] rounded-full' onPress={()=> navigation.navigate('welcome')}>
+        <Pressable className='active:bg-gray-100 w-[42px] rounded-full' onPress={()=> navigation.navigate('welcome')}>
           <Ionicons name='arrow-back-circle-outline' size={42} color={'#300073'} />
         </Pressable>
         <Text className='text-xl mt-4' style={fontWeight600}>Login in to cricket brain battle</Text>
@@ -18,7 +18,7 @@ export default function Login() {
           <Text className='text-sm mb-1' style={fontWeight400}>Email :</Text>
           <TextInput placeholder="Email" keyboardType={"email-address"} className='p-2 border border-[#d1d5db] rounded-md' style={fontWeight400} />
 
-          <Pressable className="bg-[#300073] rounded-lg w-full p-3 mt-4 active:bg-activePrimary">
+          <Pressable className="bg-[#300073] rounded-lg w-full p-3 mt-4 active:bg-[#371f5a]">
             <Text className="text-[#FFFFFF] text-center" style={fontWeight500}>
               Continue
             </Text>
@@ -31,12 +31,12 @@ export default function Login() {
           </View>
 
 
-          <Pressable onPress={()=> navigation.navigate('(tabs)')} className="border border-[#000000] rounded-lg w-full p-3 mt-4 flex flex-row items-center justify-center active:bg-gray100">
+          <Pressable onPress={()=> navigation.navigate('(tabs)')} className="border border-[#000000] rounded-lg w-full p-3 mt-4 flex flex-row items-center justify-center active:bg-gray-100">
             <Ionicons name='logo-facebook' size={26} />
             <Text className="text-[#000000] text-center" style={fontWeight500}> Continue with Google</Text>
           </Pressable>
 
-          <Pressable className="border border-[#000000] rounded-lg w-full p-3 mt-4 flex flex-row items-center justify-center active:bg-gray100">
+          <Pressable className="border border-[#000000] rounded-lg w-full p-3 mt-4 flex flex-row items-center justify-center active:bg-gray-100">
             <Ionicons name='logo-google' size={26} />
             <Text className="text-[#000000] text-center" style={fontWeight500}> Continue with Facebook</Text>
           </Pressable>
