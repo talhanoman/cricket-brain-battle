@@ -8,6 +8,12 @@ import Summary from '../components/Summary'
 import News from '../components/News'
 import ScorecardDetail from '../components/ScorecardDetail'
 
+
+const tabStyle = 'px-3 py-2 rounded-3xl border-[#300073] border flex flex-row items-center w-[32%] justify-center active:bg-gray-100';
+const tabActiveStyle = 'px-3 py-2 rounded-3xl bg-[#300073] border flex flex-row items-center w-[32%] justify-center active:bg-gray-100';
+const tabText = 'text-[#300073] text-xs text-center';
+const tabTextActive = 'text-[#FFFFFF] text-xs text-center';
+
 const Scorecard = () => {
     const { id } = useGlobalSearchParams()
     const [currentTab, setCurrentTab] = useState('Summary')
@@ -15,8 +21,8 @@ const Scorecard = () => {
         <SafeAreaView className='flex-1'>
             <ScrollView>
                 <View style={{ height: 200 }} className='bg-[#300073] p-4'>
-                    <Text className="text-lg text-[#FFFFFF]" style={fontWeight600}>Scorecard</Text>
-                    <Text className="text-base text-[#FFFFFF]" style={fontWeight600}>Pakistan vs India</Text>
+                    <Text className="text-base text-[#FFFFFF]" style={fontWeight600}>Scorecard</Text>
+                    <Text className="text-xl text-[#FFFFFF]" style={fontWeight600}>Pakistan vs India</Text>
                     <View className='h-[50px] w-full bg-gray-100 my-auto rounded-md'>
                         <Text className='text-center text-[#300073] my-auto'>Add Banner</Text>
                     </View>
@@ -25,19 +31,19 @@ const Scorecard = () => {
                     <View style={shadow} className='bg-white -mt-10 rounded-lg p-4'>
                         <View className="flex-row flex justify-between w-full relative">
                             {/* Tabs */}
-                            <Pressable onPress={() => setCurrentTab('Summary')} className='px-3 py-2 rounded-3xl border-[#300073] border flex flex-row items-center w-[32%] justify-center active:bg-gray-100'>
-                                <Text style={fontWeight500} className='text-[#300073] text-xs text-center'>
+                            <Pressable onPress={() => setCurrentTab('Summary')} className={currentTab === 'Summary'? tabActiveStyle : tabStyle}>
+                                <Text style={fontWeight500} className={currentTab === 'Summary'? tabTextActive : tabText}>
                                     Summary
                                 </Text>
                             </Pressable>
 
-                            <Pressable onPress={() => setCurrentTab('Scorecard')} className='px-3 py-2 rounded-3xl border-[#300073] border flex flex-row items-center w-[32%] justify-center active:bg-gray-100'>
-                                <Text style={fontWeight500} className='text-[#300073] text-xs text-center'>
+                            <Pressable onPress={() => setCurrentTab('Scorecard')} className={currentTab === 'Scorecard'? tabActiveStyle : tabStyle}>
+                                <Text style={fontWeight500} className={currentTab === 'Scorecard'? tabTextActive : tabText}>
                                     Scorecard
                                 </Text>
                             </Pressable>
-                            <Pressable onPress={() => setCurrentTab('News')} className='px-3 py-2 rounded-3xl border-[#300073] border flex flex-row items-center w-[32%] justify-center active:bg-gray-100'>
-                                <Text style={fontWeight500} className='text-[#300073] text-xs text-center'>
+                            <Pressable onPress={() => setCurrentTab('News')} className={currentTab === 'News'? tabActiveStyle : tabStyle}>
+                                <Text style={fontWeight500} className={currentTab === 'News'? tabTextActive : tabText}>
                                     News
                                 </Text>
                             </Pressable>
