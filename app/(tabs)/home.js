@@ -40,8 +40,11 @@ export default function home() {
   const addUser = () => {
     const userRef = ref(db, 'user');
     const newUser = {
-      name: 'Arhum',
-      email: 'arhum@gmail.com',
+      name: 'Talha Noma',
+      email: 'talha@gmail.com',
+      password: '123456',
+      is_deleted: 0,
+      date_created: Date.now()
     };
 
     push(userRef, newUser)

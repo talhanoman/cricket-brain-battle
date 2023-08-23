@@ -1,11 +1,47 @@
-import { View, Text, TextInput, Pressable } from 'react-native'
-import React from 'react'
+import { View, Text, TextInput, Pressable, Alert } from 'react-native'
+import React, {useState} from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { fontWeight400, fontWeight500, fontWeight600 } from '../styles/fontWeights'
 import { useNavigation } from 'expo-router'
+import { Authenticate } from '../components/api/post'
+
 export default function Login() {
   const navigation = useNavigation()
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  // const emailToCheck = 'talha@gmail.com'
+  // const passwordToCheck = '123456'
+
+  const Login = async () => {
+    try {
+      let loginResponse = await Authenticate(email, password);
+      if (loginResponse === 200)
+      {
+        Alert.alert(
+          'Correct Credentials'
+        )
+        navigation.navigate('(tabs)')
+      }
+      else if (loginResponse === 400)
+      {
+        Alert.alert(
+          'Wrong Credentials'
+        )
+      }
+      else
+      {
+        Alert.alert(
+          'Some Error Occured'
+        )
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+
   return (
     <SafeAreaView className='p-4'>
       <View>
@@ -16,9 +52,12 @@ export default function Login() {
         {/* Input fields */}
         <View className='mt-4'>
           <Text className='text-sm mb-1' style={fontWeight400}>Email :</Text>
-          <TextInput placeholder="Email" keyboardType={"email-address"} className='p-2 border border-[#d1d5db] rounded-md' style={fontWeight400} />
+          <TextInput placeholder="Email" value={email} onChangeText={(text) => setEmail(text)} keyboardType={"email-address"} className='p-2 border border-[#d1d5db] rounded-md' style={fontWeight400} />
 
-          <Pressable className="bg-[#300073] rounded-lg w-full p-3 mt-4 active:bg-[#371f5a]">
+          <Text className='text-sm mb-1' style={fontWeight400}>Password :</Text>
+          <TextInput placeholder="Password" value={password} onChangeText={(text) => setPassword(text)} keyboardType={"email-address"} className='p-2 border border-[#d1d5db] rounded-md' style={fontWeight400} />
+
+          <Pressable onPress={Login} className="bg-[#300073] rounded-lg w-full p-3 mt-4 active:bg-[#371f5a]">
             <Text className="text-[#FFFFFF] text-center" style={fontWeight500}>
               Continue
             </Text>
