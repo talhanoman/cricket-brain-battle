@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { fontWeight400, fontWeight500, fontWeight600 } from '../styles/fontWeights'
 import { useNavigation } from 'expo-router'
-import { Authenticate } from '../components/api/post'
+import { LoginWithEmail } from '../components/api/post'
 
 export default function Login() {
   const navigation = useNavigation()
@@ -12,31 +12,23 @@ export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  // const emailToCheck = 'talha@gmail.com'
-  // const passwordToCheck = '123456'
-
   const Login = async () => {
-    try {
-      let loginResponse = await Authenticate(email, password);
-      if (loginResponse === 200) {
-        Alert.alert(
-          'Correct Credentials'
-        )
-        navigation.navigate('(tabs)')
-      }
-      else if (loginResponse === 400) {
-        Alert.alert(
-          'Wrong Credentials'
-        )
-      }
-      else {
-        Alert.alert(
-          'Some Error Occured'
-        )
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    LoginWithEmail(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        Alert.alert('Correct Credentials')
+      })
+      .catch((error) => {
+        // Handle login error
+        console.error('Error logging in:', error.message);
+        let catchError = error.message
+        const errorMessage = catchError.match(/\((.*?)\)/);
+        if (errorMessage && errorMessage.length > 1) {
+          Alert.alert("Error: ", errorMessage[1])
+        } else {
+          Alert.alert("Error: Some Error Occured While Logging In")
+        }
+      });
   }
 
   return (

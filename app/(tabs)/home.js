@@ -38,24 +38,6 @@ export default function home() {
     LiveScoreUpdates()
   }, [])
 
-  const addUser = () => {
-    const userRef = ref(db, 'user');
-    const newUser = {
-      name: 'Talha Noma',
-      email: 'talha@gmail.com',
-      password: '123456',
-      is_deleted: 0,
-      date_created: Date.now()
-    };
-
-    push(userRef, newUser)
-      .then(() => {
-        console.log('User data added successfully.');
-      })
-      .catch(error => {
-        console.error('Error adding user data:', error);
-      });
-  };
   console.clear()
   console.log('International Match', internationalMatch);
   console.log('League Match', leagueMatch);
@@ -63,7 +45,7 @@ export default function home() {
     <SafeAreaView className='flex-1'>
       <ScrollView>
         <View style={{ height: 200 }} className='bg-[#300073] p-4'>
-          <Text onPress={addUser} className="text-lg text-[#FFFFFF]" style={fontWeight600}>Hello Talha!</Text>
+          <Text className="text-lg text-[#FFFFFF]" style={fontWeight600}>Hello Talha!</Text>
           <Text className="text-base text-[#FFFFFF]" style={fontWeight600}>Explore all the live matches around the world!</Text>
           <View className='h-[50px] w-full bg-gray-100 my-auto rounded-md'>
             <Text className='text-center text-[#FFFFFF] my-auto'>Add Banner</Text>
@@ -77,7 +59,7 @@ export default function home() {
           {
             internationalMatch?.map((series, index) => (
               series?.seriesMatches?.matches?.map((match) => (
-                <MatchCard key={index} live={false} teamOne={match?.matchInfo?.team1?.teamName} teamTwo={match?.matchInfo?.team2?.teamName} teamOneScore={match?.matchScore?.team1Score?.inngs1?.runs ? match?.matchScore?.team1Score?.inngs1?.runs : "-"} teamOneWicket={match?.matchScore?.team1Score?.inngs1?.wickets ? match?.matchScore?.team1Score?.inngs1?.wickets : "-"} teamTwoScore={match?.matchScore?.team2Score?.inngs1?.runs ? match?.matchScore?.team2Score?.inngs1?.runs : "-"} teamTwoWicket={match?.matchScore?.team2Score?.inngs1?.wickets ? match?.matchScore?.team2Score?.inngs1?.wickets : "-"} progress={match?.matchInfo?.status} />
+                <MatchCard key={index} live={false} matchId={match?.matchInfo?.matchId} teamOne={match?.matchInfo?.team1?.teamName} teamTwo={match?.matchInfo?.team2?.teamName} teamOneScore={match?.matchScore?.team1Score?.inngs1?.runs ? match?.matchScore?.team1Score?.inngs1?.runs : "-"} teamOneWicket={match?.matchScore?.team1Score?.inngs1?.wickets ? match?.matchScore?.team1Score?.inngs1?.wickets : "-"} teamTwoScore={match?.matchScore?.team2Score?.inngs1?.runs ? match?.matchScore?.team2Score?.inngs1?.runs : "-"} teamTwoWicket={match?.matchScore?.team2Score?.inngs1?.wickets ? match?.matchScore?.team2Score?.inngs1?.wickets : "-"} progress={match?.matchInfo?.status} />
               ))
             ))
           }
