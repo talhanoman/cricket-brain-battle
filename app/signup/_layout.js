@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { fontWeight400, fontWeight500, fontWeight600 } from '../styles/fontWeights'
 import { useNavigation } from 'expo-router'
-import { Authenticate } from '../components/api/post'
+import { SignupWithEmail, SaveUserToDatabase } from '../components/api/post'
 
 export default function Login() {
     const navigation = useNavigation()
@@ -12,6 +12,41 @@ export default function Login() {
     const [fullName, setFullName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    const SaveData = async () => {
+        let response = await SaveUserToDatabase(email, fullName, 0)
+        if (response)
+        {
+            Alert.alert('Signed Up Successfully!')
+        }
+        else
+        {
+            Alert.alert('Error Occured While Saving Some Data!')
+        }
+    }
+
+    const Signup = async () => {
+        SignupWithEmail(email, password)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            /**
+             * Save User Data to DB
+             * @see {SaveData}
+             */
+            SaveData()            
+          })
+          .catch((error) => {
+            // Handle login error
+            console.error('Error:', error.message);
+            let catchError = error.message
+            const errorMessage = catchError.match(/\((.*?)\)/);
+            if (errorMessage && errorMessage.length > 1) {
+              Alert.alert("Error: ", errorMessage[1])
+            } else {
+              Alert.alert("Error: Some Error Occured While Signing Up")
+            }
+          });
+      }
 
     return (
         <SafeAreaView className='p-4'>
@@ -31,7 +66,7 @@ export default function Login() {
                     <Text className='text-sm mb-1' style={fontWeight400}>Password :</Text>
                     <TextInput  secureTextEntry={true}  placeholder="Password" value={password} onChangeText={(text) => setPassword(text)} className='p-2 border border-[#d1d5db] rounded-md mb-3' style={fontWeight400} />
 
-                    <Pressable className="bg-[#300073] rounded-lg w-full p-3 mt-4 active:bg-[#371f5a]">
+                    <Pressable onPress={Signup} className="bg-[#300073] rounded-lg w-full p-3 mt-4 active:bg-[#371f5a]">
                         <Text className="text-[#FFFFFF] text-center" style={fontWeight500}>
                             Sign up
                         </Text>

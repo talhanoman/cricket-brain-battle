@@ -1,12 +1,50 @@
 import { db, app } from '../firebase/firebase';
-import { ref, get } from '@firebase/database';
+import { ref, get, push } from '@firebase/database';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
 
 export const LoginWithEmail = (email, password) => {
   const auth = getAuth(app);
 
   return signInWithEmailAndPassword(auth, email, password);
 };
+
+export const SignupWithEmail = (email, password) => {
+  const auth = getAuth(app);
+
+  return createUserWithEmailAndPassword(auth, email, password);
+};
+
+export const SaveUserToDatabase = (email, fullname, score) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const userId = uuidv4();
+      const userRef = ref(db, 'user');
+      const newUser = {
+        userid: userId,
+        name: fullname,
+        email: email,
+        score: score,
+        is_deleted: 0,
+        date_created: Date.now()
+      };
+
+      push(userRef, newUser)
+        .then(() => {
+          console.log('User data added successfully.');
+          resolve(true)
+        })
+        .catch(error => {
+          console.error('Error adding user data:', error);
+          reject(false)
+        });
+    } catch (error) {
+      console.error('Error Storing Data:', error);
+      reject(false);
+    }
+  });
+}
 
 export const Authenticate = async (email, password) => {
     return new Promise(async (resolve, reject) => {
@@ -34,24 +72,6 @@ export const Authenticate = async (email, password) => {
         reject(500);
       }
     });
-  };
-
-  const addUser = () => {
-
-    let email = 'talhanoman@gmail.com'
-    let password = '12345678'
-
-    createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // User successfully created
-    const user = userCredential.user;
-    console.log('User logged in:', user);
-  })
-  .catch((error) => {
-    // Handle error
-    console.error('Error creating user:', error);
-  });
-
   };
 
       // const userRef = ref(db, 'user');
