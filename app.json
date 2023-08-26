@@ -7,7 +7,10 @@
     "plugins": [
       "expo-router"
     ],
-    "name": "tabs-app",
-    "slug": "tabs-app"
+    "name": "cricket-brain-battle",
+    "slug": "cricket-brain-battle",
+    "splash": {
+      "image": "./assets/splash.png"
+    }
   }
 }

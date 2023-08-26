@@ -43,7 +43,7 @@ export default function Welcome() {
                     </Link> */}
             </View>
             <View className='bg-white py-5 flex flex-col gap-y-3'>
-                <Pressable className="bg-[#300073] w-full rounded-lg p-3 active:bg-[#371f5a]" >
+                <Pressable onPress={()=> navigation.navigate('signup')} className="bg-[#300073] w-full rounded-lg p-3 active:bg-[#371f5a]" >
                     <Text className="text-[#FFFFFF] text-center" style={fontWeight500}>
                         Get started
                     </Text>

@@ -11,6 +11,7 @@ import { StatusBar } from 'expo-status-bar';
 import { getLiveScore } from '../components/api/get';
 import { db } from '../components/firebase/firebase';
 import { ref, push } from '@firebase/database';
+import { router } from 'expo-router';
 
 export default function home() {
 
@@ -126,13 +127,13 @@ export default function home() {
             </View>
             {/* Buttons Row */}
             <View className='flex flex-row justify-between mt-4 gap-x-2'>
-              <Pressable className="border border-primary rounded-lg w-1/2 p-3 active:bg-gray-100 flex flex-row justify-center items-center">
+              <Pressable onPress={()=> {router.push('/leaderboard')}} className="border border-primary rounded-lg w-1/2 p-3 active:bg-gray-100 flex flex-row justify-center items-center">
                 <Ionicons name='bar-chart' size={24} color={'#300073'} />
                 <Text className="text-primary text-center ml-1" style={fontWeight500}>
                   View All
                 </Text>
               </Pressable>
-              <Pressable className="bg-[#300073] w-1/2 rounded-lg p-3 active:bg-[#371f5a] flex flex-row justify-center items-center" >
+              <Pressable  className="bg-[#300073] w-1/2 rounded-lg p-3 active:bg-[#371f5a] flex flex-row justify-center items-center" >
                 <Ionicons name='game-controller' size={24} color={'#FFFFFF'} />
                 <Text className="text-[#FFFFFF] text-center ml-1" style={fontWeight500}>
                   Play
