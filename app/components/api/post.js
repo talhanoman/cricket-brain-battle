@@ -3,6 +3,7 @@ import { ref, get, push } from '@firebase/database';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
+import * as SecureStore from 'expo-secure-store';
 
 export const LoginWithEmail = (email, password) => {
   const auth = getAuth(app);
@@ -31,8 +32,11 @@ export const SaveUserToDatabase = (email, fullname, score) => {
       };
 
       push(userRef, newUser)
-        .then(() => {
+        .then(async () => {
           console.log('User data added successfully.');
+          // Set UserId to Secure System
+          await SecureStore.setItemAsync('userId', userId);
+          await SecureStore.setItemAsync('name', fullname);
           resolve(true)
         })
         .catch(error => {
