@@ -4,16 +4,12 @@ import { useGlobalSearchParams } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { ScrollView } from 'react-native-gesture-handler'
 import { fontWeight500, fontWeight600 } from '../styles/fontWeights'
-import Summary from '../components/Summary'
-import News from '../components/News'
-import ScorecardDetail from '../components/ScorecardDetail'
 import { Image } from 'expo-image'
-
+import { DATA_LEADERBOARD } from '../../data/leaderboard-data'
+import LeaderboardContent from '../components/LeaderboardContent'
 
 
 const Leaderboard = () => {
-    const { id } = useGlobalSearchParams()
-    const [currentTab, setCurrentTab] = useState('Summary')
     return (
         <SafeAreaView className='flex-1'>
             <ScrollView>
@@ -56,15 +52,7 @@ const Leaderboard = () => {
                             </View>
                         </View>
                         <View className='h-[1px] my-3 bg-gray-300' />
-                        {
-                            currentTab === 'Summary' ?
-                                <Summary />
-                                :
-                                currentTab === 'News' ?
-                                    <News />
-                                    :
-                                    <ScorecardDetail />
-                        }
+                        <LeaderboardContent DATA={DATA_LEADERBOARD} />
                     </View>
                 </View>
 

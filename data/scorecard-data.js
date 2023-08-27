@@ -53,10 +53,10 @@ const DATA_BOWLING_1 = [
         economy: 2,
         strikeRate: 225
     }
-  
-  ];
-  
-  const DATA_BOWLING_2 = [
+
+];
+
+const DATA_BOWLING_2 = [
     {
         id: 1,
         bowlerName: 'Saleem Rizwan',
@@ -102,9 +102,9 @@ const DATA_BOWLING_1 = [
         economy: 2,
         strikeRate: 225
     },
-  ];
-  
-  const DATA_BATTING_1 = [
+];
+
+const DATA_BATTING_1 = [
     {
         id: 1,
         batterName: 'Muhammad Rizwan',
@@ -204,9 +204,9 @@ const DATA_BOWLING_1 = [
         sixes: 2,
         strikeRate: 225
     },
-  
-  ];
-  const DATA_BATTING_2 = [
+
+];
+const DATA_BATTING_2 = [
     {
         id: 1,
         batterName: 'Virat Kohli',
@@ -306,7 +306,9 @@ const DATA_BOWLING_1 = [
         sixes: 2,
         strikeRate: 225
     },
-  
-  ];
 
-  export {DATA_BATTING_1, DATA_BATTING_2, DATA_BOWLING_1, DATA_BOWLING_2}
+];
+
+
+
+export { DATA_BATTING_1, DATA_BATTING_2, DATA_BOWLING_1, DATA_BOWLING_2 }
