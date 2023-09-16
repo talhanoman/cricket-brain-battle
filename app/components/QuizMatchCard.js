@@ -64,6 +64,8 @@ const { shadow, matchCard } = StyleSheet.create({
         borderRadius: 6,
         marginTop: 8,
         marginBottom: 8,
+        marginRight : 'auto',
+        marginLeft  :'auto'
     },
     shadow: {
         elevation: 2
