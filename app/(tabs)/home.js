@@ -9,37 +9,14 @@ import { ScrollView } from 'react-native-gesture-handler';
 import MatchCard from '../components/MatchCard';
 import { StatusBar } from 'expo-status-bar';
 import { getLiveScore } from '../components/api/get';
+
 import { router } from 'expo-router';
-import * as SecureStore from 'expo-secure-store';
 
 export default function home() {
 
+  const [allScores, setAllScores] = useState([])
   const [internationalMatch, setInternationalMatch] = useState([])
   const [leagueMatch, setLeagueMatch] = useState([])
-
-  const [username, setUsername] = useState('')
-  const [userId, setUserId] = useState('')
-
-  const GetUserData = () => {
-    GetUserId()
-    GetUserName()
-  }
-
-  const GetUserId = async () => {
-    let id = await SecureStore.getItemAsync('userId');
-    if (id)
-    {
-      setUserId(id)
-    }
-  }
-
-  const GetUserName = async () => {
-    let name = await SecureStore.getItemAsync('name');
-    if (name)
-    {
-      setUsername(name)
-    }
-  }
 
   const LiveScoreUpdates = async () => {
     let allMatches = await getLiveScore()
@@ -58,15 +35,16 @@ export default function home() {
 
   useEffect(() => {
     LiveScoreUpdates()
-    GetUserData()
   }, [])
 
   console.clear()
+  console.log('International Match', internationalMatch);
+  console.log('League Match', leagueMatch);
   return (
     <SafeAreaView className='flex-1'>
       <ScrollView>
         <View style={{ height: 200 }} className='bg-[#300073] p-4'>
-          <Text className="text-lg text-[#FFFFFF]" style={fontWeight600}>Hello {username}!</Text>
+          <Text className="text-lg text-[#FFFFFF]" style={fontWeight600}>Hello Talha!</Text>
           <Text className="text-base text-[#FFFFFF]" style={fontWeight600}>Explore all the live matches around the world!</Text>
           <View className='h-[50px] w-full bg-gray-100 my-auto rounded-md'>
             <Text className='text-center text-[#FFFFFF] my-auto'>Add Banner</Text>
@@ -136,7 +114,7 @@ export default function home() {
                   View All
                 </Text>
               </Pressable>
-              <Pressable  className="bg-[#300073] w-1/2 rounded-lg p-3 active:bg-[#371f5a] flex flex-row justify-center items-center" >
+              <Pressable onPress={()=> {router.push('/quiz')}}  className="bg-[#300073] w-1/2 rounded-lg p-3 active:bg-[#371f5a] flex flex-row justify-center items-center" >
                 <Ionicons name='game-controller' size={24} color={'#FFFFFF'} />
                 <Text className="text-[#FFFFFF] text-center ml-1" style={fontWeight500}>
                   Play

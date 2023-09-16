@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { ScrollView } from 'react-native-gesture-handler'
 import { fontWeight500, fontWeight600 } from '../styles/fontWeights'
 import Summary from '../components/Summary'
-import News from '../components/News'
+import Quiz from '../components/Quiz'
 import ScorecardDetail from '../components/ScorecardDetail'
 
 
@@ -42,9 +42,9 @@ const Scorecard = () => {
                                     Scorecard
                                 </Text>
                             </Pressable>
-                            <Pressable onPress={() => setCurrentTab('News')} className={currentTab === 'News'? tabActiveStyle : tabStyle}>
-                                <Text style={fontWeight500} className={currentTab === 'News'? tabTextActive : tabText}>
-                                    News
+                            <Pressable onPress={() => setCurrentTab('Quiz')} className={currentTab === 'Quiz'? tabActiveStyle : tabStyle}>
+                                <Text style={fontWeight500} className={currentTab === 'Quiz'? tabTextActive : tabText}>
+                                    Quiz
                                 </Text>
                             </Pressable>
                         </View>
@@ -53,8 +53,8 @@ const Scorecard = () => {
                             currentTab === 'Summary' ?
                                 <Summary />
                                 :
-                                currentTab === 'News' ?
-                                    <News />
+                                currentTab === 'Quiz' ?
+                                    <Quiz />
                                     :
                                     <ScorecardDetail />
                         }

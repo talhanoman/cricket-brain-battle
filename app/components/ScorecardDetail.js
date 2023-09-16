@@ -1,10 +1,9 @@
-import { View, Text, Pressable, FlatList } from 'react-native'
+import { View, Text, Pressable } from 'react-native'
 import React, { useState } from 'react'
-import { fontWeight400, fontWeight500, fontWeight600 } from '../styles/fontWeights'
+import { fontWeight500, fontWeight600 } from '../styles/fontWeights'
 import Collapsible from 'react-native-collapsible';
 import { Ionicons } from "@expo/vector-icons"
 import CollapsibleBattingContent from './CollapsibleBattingContent';
-import { ScrollView } from 'react-native-gesture-handler';
 import CollapsibleBowlingContent from './CollapsibleBowlingContent';
 import { DATA_BOWLING_1, DATA_BOWLING_2, DATA_BATTING_1, DATA_BATTING_2 } from '../../data/scorecard-data';
 
