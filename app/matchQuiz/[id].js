@@ -30,6 +30,11 @@ const MatchQuiz = () => {
                 </View>
                 <View className='p-2'>
                     <Quiz />
+                    <Pressable className="bg-[#300073] w-1/2 rounded-lg p-3 active:bg-[#371f5a] flex flex-row justify-center items-center mx-auto" >                        
+                        <Text className="text-[#FFFFFF] text-center ml-1" style={fontWeight500}>
+                            Submit
+                        </Text>
+                    </Pressable>
                 </View>
 
 
